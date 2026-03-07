@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ruma | Diseño que acompaña✨</title>
+    <title>Ruma | Diseño que acompapña ✨</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/jpeg" href="img/RumaLogoCorto.jpeg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
@@ -26,6 +27,7 @@
             <h1>Tu picnic, con más onda.</h1>
             <p>Bolsos materos que se hacen mantel. Diseños únicos, telas modernas y todo el kit listo para el mate.</p>
             <a href="#catalogo" class="btn-main">Ver Modelos</a>
+           
         </div>
     </header>
 
@@ -46,21 +48,33 @@
         <div class="product-grid">
             
             <!-- PRODUCTO 1 -->
-            <div class="card">
-                <div class="card-img">
-                    <img src="tu-foto-1.jpg" alt="Bolso Matero Estampado">
-                    <span class="tag">ESTAMPADO</span>
+            <div class="card" data-detail="[Agrega aquí la información detallada del Modelo Aurora: medidas, materiales, colores, tiempos de entrega, etc.]">
+                <div class="card-img card-slider" data-slider>
+                    <div class="slider-track">
+                         <img src="img/Gemini_Generated_Image_e2fsyye2fsyye2fs.png" alt="Detalle del modelo Aurora">
+                        <img src="img/accesoriosBAn.jpeg" alt="Accesorios del modelo Aurora">
+                        <img src="img/bolsoAccesoriosBan.jpeg" alt="Bolso con accesorios Aurora">
+
+                     </div>
+                    <button type="button" class="slider-btn slider-prev" aria-label="Imagen anterior">
+                        <i class="fas fa-chevron-left" aria-hidden="true"></i>
+                    </button>
+                    <button type="button" class="slider-btn slider-next" aria-label="Siguiente imagen">
+                        <i class="fas fa-chevron-right" aria-hidden="true"></i>
+                    </button>
+                    <div class="slider-dots" aria-hidden="true"></div>
+                    <span class="tag">Diseño exclusivo </span>
                 </div>
                 <div class="card-info">
-                    <h3>Modelo Aurora</h3>
-                    <p>Tela elastizada con diseño floral. Bordado reforzado.</p>
+                    <h3>Modelo Militar Pixelado</h3>
+                    <p>Bolso/Mantel con interior negro y exterior pixelado </p>
                     <a href="https://wa.me/5493834251613?text=Hola! Quiero info del Modelo Aurora" 
                        class="btn-card" target="_blank">Consultar</a>
                 </div>
             </div>
 
             <!-- PRODUCTO 2 -->
-            <div class="card">
+            <div class="card" data-detail="[Agrega aquí la información detallada del Modelo Selva: medidas, materiales, colores, tiempos de entrega, etc.]">
                 <div class="card-img">
                     <img src="tu-foto-2.jpg" alt="Bolso Matero Liso">
                     <span class="tag">BORDADO</span>
@@ -74,7 +88,7 @@
             </div>
 
             <!-- PRODUCTO 3 -->
-            <div class="card">
+            <div class="card" data-detail="[Agrega aquí la información detallada del Modelo Pop: medidas, materiales, colores, tiempos de entrega, etc.]">
                 <div class="card-img">
                     <img src="tu-foto-3.jpg" alt="Bolso Matero Moderno">
                     <span class="tag">LISO / MODERNO</span>
@@ -108,6 +122,37 @@
     <a href="https://wa.me/5493834251613" class="whatsapp-float" target="_blank">
         <img src="img/whatsapp_logo_icon_186881-removebg-preview.png" alt="WhatsApp">
     </a>
+
+    <!-- MODAL CATÁLOGO -->
+    <div id="catalogModal" class="catalog-modal" aria-hidden="true">
+        <div class="catalog-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="catalogModalTitle">
+            <button type="button" class="catalog-modal-close" id="catalogModalClose" aria-label="Cerrar visor">
+                <i class="fas fa-times" aria-hidden="true"></i>
+            </button>
+
+            <div class="catalog-modal-gallery">
+                <button type="button" class="modal-nav modal-prev" id="modalPrev" aria-label="Imagen anterior">
+                    <i class="fas fa-chevron-left" aria-hidden="true"></i>
+                </button>
+
+                <div class="modal-image-frame" id="modalImageFrame">
+                    <img id="modalMainImage" src="" alt="">
+                </div>
+
+                <button type="button" class="modal-nav modal-next" id="modalNext" aria-label="Siguiente imagen">
+                    <i class="fas fa-chevron-right" aria-hidden="true"></i>
+                </button>
+            </div>
+
+            <div class="modal-thumbs" id="modalThumbs"></div>
+
+            <div class="catalog-modal-info">
+                <h3 id="catalogModalTitle"></h3>
+                <p id="catalogModalDesc"></p>
+                <p id="catalogModalDetail" class="modal-detail-text"></p>
+            </div>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>

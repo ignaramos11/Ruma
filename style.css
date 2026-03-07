@@ -96,20 +96,26 @@ body {
 
 /* Hero Section */
 .hero {
-    height: 80vh;
-    background: linear-gradient(rgba(10,14,12,0.65), rgba(10,14,12,0.35)), url('tu-foto-hero.jpg');
-    background-size: cover;
-    background-position: center;
+    position: relative;
+    height: 55vh;
+    min-height: 320px;
+    max-height: 460px;
+    background: linear-gradient(180deg, #1c2821 0%, #141b17 100%);
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
     color: white;
+    overflow: hidden;
 }
 
 .hero h1 { font-size: 3rem; margin-bottom: 20px; }
 
 .hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 760px;
+    padding: 0 5%;
     animation: fade-up 0.8s ease-out;
 }
 
@@ -178,6 +184,81 @@ body {
 
 .card-img { position: relative; height: 250px; }
 .card-img img { width: 100%; height: 100%; object-fit: cover; }
+
+.card-slider {
+    overflow: hidden;
+}
+
+.slider-track {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.35s ease;
+}
+
+.slider-track img {
+    flex: 0 0 100%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+.slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 34px;
+    height: 34px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.5);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 2;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.slider-btn:hover {
+    background: rgba(0, 0, 0, 0.72);
+    transform: translateY(-50%) scale(1.04);
+}
+
+.slider-prev {
+    left: 10px;
+}
+
+.slider-next {
+    right: 10px;
+}
+
+.slider-dots {
+    position: absolute;
+    left: 50%;
+    bottom: 10px;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 6px;
+    z-index: 2;
+}
+
+.slider-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 255, 255, 0.45);
+    padding: 0;
+    cursor: pointer;
+}
+
+.slider-dot.is-active {
+    background: #ffffff;
+}
 
 .tag {
     position: absolute;
@@ -254,6 +335,159 @@ body {
     box-shadow: none;
 }
 
+/* Modal Catalogo */
+.catalog-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(9, 12, 10, 0.84);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 18px;
+    z-index: 3000;
+}
+
+.catalog-modal.open {
+    display: flex;
+}
+
+.catalog-modal-dialog {
+    position: relative;
+    width: min(980px, 96vw);
+    max-height: 92vh;
+    overflow-y: auto;
+    background: #141b17;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 16px 16px 20px;
+    box-shadow: 0 18px 42px rgba(0, 0, 0, 0.48);
+}
+
+.catalog-modal-close {
+    position: absolute;
+    right: 12px;
+    top: 12px;
+    width: 34px;
+    height: 34px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    cursor: pointer;
+    z-index: 5;
+}
+
+.catalog-modal-gallery {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.modal-image-frame {
+    width: 100%;
+    height: min(58vh, 560px);
+    border-radius: 12px;
+    overflow: hidden;
+    background: #0f1412;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: zoom-in;
+}
+
+.modal-image-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform 0.2s ease;
+    transform-origin: center center;
+    transform: translate(0px, 0px) scale(1);
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+.modal-image-frame.zoomed {
+    cursor: zoom-out;
+}
+
+.modal-image-frame.zoomed img {
+    transform: translate(var(--zoom-x, 0px), var(--zoom-y, 0px)) scale(var(--zoom-level, 3));
+}
+
+.modal-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 38px;
+    height: 38px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.52);
+    color: #fff;
+    cursor: pointer;
+    z-index: 3;
+}
+
+.modal-prev {
+    left: 10px;
+}
+
+.modal-next {
+    right: 10px;
+}
+
+.modal-thumbs {
+    margin-top: 12px;
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding-bottom: 2px;
+}
+
+.modal-thumb {
+    border: 1px solid transparent;
+    padding: 0;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #1f2a22;
+    cursor: pointer;
+    min-width: 68px;
+}
+
+.modal-thumb img {
+    width: 68px;
+    height: 52px;
+    object-fit: cover;
+    display: block;
+}
+
+.modal-thumb.is-active {
+    border-color: var(--primario);
+}
+
+.catalog-modal-info {
+    margin-top: 14px;
+}
+
+.catalog-modal-info h3 {
+    color: var(--blanco);
+    margin-bottom: 8px;
+}
+
+.catalog-modal-info p {
+    color: var(--muted);
+    margin-bottom: 8px;
+}
+
+.modal-detail-text {
+    background: #1b261f;
+    border: 1px dashed rgba(255, 255, 255, 0.18);
+    border-radius: 10px;
+    padding: 12px;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
     .navbar {
@@ -274,8 +508,9 @@ body {
     }
 
     .hero {
-        height: auto;
-        padding: 70px 5% 60px;
+        height: 42vh;
+        min-height: 250px;
+        max-height: 340px;
     }
 
     .hero h1 { font-size: 2rem; }
@@ -283,6 +518,7 @@ body {
     .hero p {
         font-size: 1rem;
     }
+
 
     .btn-main {
         padding: 12px 26px;
@@ -315,12 +551,30 @@ body {
         height: 220px;
     }
 
+    .slider-btn {
+        width: 30px;
+        height: 30px;
+    }
+
     .whatsapp-float {
         width: 54px;
         height: 54px;
         font-size: 26px;
         bottom: 16px;
         right: 16px;
+    }
+
+    .modal-image-frame {
+        height: min(44vh, 360px);
+    }
+
+    .modal-nav {
+        width: 32px;
+        height: 32px;
+    }
+
+    .catalog-modal-dialog {
+        padding: 14px 12px 16px;
     }
 }
 
@@ -418,6 +672,11 @@ body {
 
     .card-img {
         height: 200px;
+    }
+
+    .slider-btn {
+        width: 28px;
+        height: 28px;
     }
 
     .btn-card {
